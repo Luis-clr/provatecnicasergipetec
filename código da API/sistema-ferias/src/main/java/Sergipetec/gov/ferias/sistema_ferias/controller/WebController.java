@@ -30,8 +30,7 @@ public class WebController {
                                  @RequestParam String senha,
                                  RedirectAttributes redirectAttributes) {
         try {
-            // Buscar servidor pela matrícula
-            // Por enquanto, simulação simples
+            // Buscar peal matricula e apenas para teste da aplicacao
             if (matricula.equals(123456) && senha.equals("senha123")) {
                 return "redirect:/ferias/1";
             } else if (matricula.equals(789012) && senha.equals("senha123")) {

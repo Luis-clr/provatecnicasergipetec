@@ -3,6 +3,7 @@ package Sergipetec.gov.ferias.sistema_ferias.controller;
 import Sergipetec.gov.ferias.sistema_ferias.dto.FeriasDetalheDTO;
 import Sergipetec.gov.ferias.sistema_ferias.dto.FeriasListaDTO;
 import Sergipetec.gov.ferias.sistema_ferias.model.Servidor;
+import Sergipetec.gov.ferias.sistema_ferias.service.AutenticacaoService;
 import Sergipetec.gov.ferias.sistema_ferias.service.FeriasService;
 import Sergipetec.gov.ferias.sistema_ferias.service.ServidorService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class WebController {
 
     private final ServidorService servidorService;
     private final FeriasService feriasService;
+    private final AutenticacaoService autenticacaoService;
 
     @GetMapping("/")
     public String login() {
@@ -26,21 +28,19 @@ public class WebController {
     }
 
     @PostMapping("/login")
-    public String processarLogin(@RequestParam Integer matricula,
+    public String processarLogin(@RequestParam String login,
                                  @RequestParam String senha,
                                  RedirectAttributes redirectAttributes) {
         try {
-            // Buscar peal matricula e apenas para teste da aplicacao
-            if (matricula.equals(123456) && senha.equals("senha123")) {
-                return "redirect:/ferias/1";
-            } else if (matricula.equals(789012) && senha.equals("senha123")) {
-                return "redirect:/ferias/2";
+            Servidor servidor = autenticacaoService.autenticar(login, senha);
+            if (servidor != null) {
+                return "redirect:/ferias/" + servidor.getIdServidor();
             } else {
-                redirectAttributes.addFlashAttribute("erro", "Matrícula ou senha inválidos");
+                redirectAttributes.addFlashAttribute("erro", "Login ou senha inválidos");
                 return "redirect:/";
             }
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("erro", "Erro ao fazer login");
+            redirectAttributes.addFlashAttribute("erro", "Erro ao fazer login: " + e.getMessage());
             return "redirect:/";
         }
     }
@@ -78,6 +78,7 @@ public class WebController {
             return "redirect:/ferias/" + servidorId;
         }
     }
+
     @GetMapping("/ferias/nova")
     public String formNovaSolicitacao(@RequestParam Integer servidorId, Model model) {
         try {
@@ -85,8 +86,7 @@ public class WebController {
             model.addAttribute("servidor", servidor);
             return "nova-solicitacao";
         } catch (Exception e) {
-            return "redirect:/"; // Se der erro, volta pro login
+            return "redirect:/";
         }
     }
-
 }

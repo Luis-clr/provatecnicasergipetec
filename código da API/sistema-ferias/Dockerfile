@@ -1,14 +1,14 @@
 # Estágio 1: Build
-# Usa uma imagem do Maven compatível com o Java 17 definido no seu pom.xml
+# Usa Maven com Java 17 (versão estável Eclipse Temurin)
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-# Compila o projeto (pula os testes para ser mais rápido)
+# Compila o projeto
 RUN mvn clean package -DskipTests
 
 # Estágio 2: Run
-# Usa uma imagem leve do Java 17 para rodar a aplicação
-FROM openjdk:17-jdk-slim
+# AQUI ESTAVA O ERRO: Trocamos 'openjdk' por 'eclipse-temurin'
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 # Copia o .jar gerado no estágio anterior
 COPY --from=build /app/target/*.jar app.jar

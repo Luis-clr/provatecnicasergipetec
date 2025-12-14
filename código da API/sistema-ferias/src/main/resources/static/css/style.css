@@ -1,6 +1,3 @@
-/* ==========================================
-   RESET E BASE
-   ========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +8,6 @@ body {
     font-family: 'Courier New', monospace;
     color: #fff;
 }
-
-/* ==========================================
-   TELA DE LOGIN (FUNDO BRANCO)
-   ========================================== */
 .login-body {
     background: #ffffff;
     display: flex;
@@ -46,8 +39,6 @@ body {
     max-width: 200px;
     height: auto;
 }
-
-/* Se não tiver imagem, use isto: */
 .logo-sergipetec::after {
     content: 'SERGIPETEC';
     display: block;
@@ -122,10 +113,6 @@ body {
     font-size: 14px;
     text-align: center;
 }
-
-/* ==========================================
-   TELAS ESCURAS (LISTA E DETALHES)
-   ========================================== */
 .dark-body {
     background: #1a1a1a;
     min-height: 100vh;
@@ -141,10 +128,6 @@ body {
     padding: 30px;
     min-height: 600px;
 }
-
-/* ==========================================
-   HEADER DA LISTA
-   ========================================== */
 .screen-header {
     display: flex;
     justify-content: space-between;
@@ -184,10 +167,6 @@ body {
     background: #ffffff;
     color: #000000;
 }
-
-/* ==========================================
-   TÍTULO E NOVA SOLICITAÇÃO
-   ========================================== */
 .title-row {
     display: flex;
     justify-content: space-between;
@@ -217,9 +196,6 @@ body {
     color: #000000;
 }
 
-/* ==========================================
-   CARDS DE FÉRIAS (LISTA)
-   ========================================== */
 .ferias-list {
     display: flex;
     flex-direction: column;
@@ -289,9 +265,6 @@ body {
     white-space: nowrap;
 }
 
-/* ==========================================
-   DETALHES DAS FÉRIAS
-   ========================================== */
 .detail-header {
     display: flex;
     justify-content: space-between;
@@ -338,10 +311,6 @@ body {
     font-size: 14px;
     font-weight: bold;
 }
-
-/* ==========================================
-   SEÇÕES DE INFORMAÇÃO
-   ========================================== */
 .info-section {
     background: #2a2a2a;
     border: 3px solid #ffffff;
@@ -385,9 +354,6 @@ body {
     text-align: right;
 }
 
-/* ==========================================
-   TIMELINE (HISTÓRICO)
-   ========================================== */
 .timeline-simple {
     position: relative;
     padding-left: 40px;
@@ -442,10 +408,6 @@ body {
     color: #ffffff;
     font-weight: bold;
 }
-
-/* ==========================================
-   EMPTY STATE
-   ========================================== */
 .empty-state-simple {
     text-align: center;
     padding: 60px 20px;
@@ -453,9 +415,6 @@ body {
     font-size: 18px;
 }
 
-/* ==========================================
-   RESPONSIVO
-   ========================================== */
 @media (max-width: 768px) {
     .screen-container {
         padding: 20px;
@@ -489,5 +448,78 @@ body {
 
     .info-value {
         text-align: left;
+    }
+
+    /* ==========================================
+   FORMULÁRIO NOVA SOLICITAÇÃO (DARK)
+   ========================================== */
+
+    .form-section {
+        background: #2a2a2a;
+        border: 3px solid #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .form-row {
+        margin-bottom: 25px;
+    }
+
+    .form-label-dark {
+        display: block;
+        color: #cccccc;
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .form-input-dark {
+        width: 100%;
+        padding: 15px;
+        background: #1a1a1a;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        color: #ffffff;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+    }
+
+    /* Ajuste para o ícone do calendário ficar branco (funciona na maioria dos browsers modernos) */
+    .form-input-dark::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+    }
+
+    .form-input-dark:focus {
+        outline: none;
+        border-color: #999;
+    }
+
+    .calc-dias {
+        text-align: right;
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 5px;
+        font-weight: bold;
+    }
+
+    .btn-confirmar {
+        width: 100%;
+        padding: 15px;
+        background: #ffffff;
+        color: #000000;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: 'Courier New', monospace;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+
+    .btn-confirmar:hover {
+        background: #ccc;
     }
 }

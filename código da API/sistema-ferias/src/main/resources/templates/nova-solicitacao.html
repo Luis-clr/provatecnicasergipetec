@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Solicitação de Férias</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="dark-body">
+
+<div class="screen-container">
+    <div class="detail-header">
+        <button class="btn-voltar" th:onclick="'location.href=\'/ferias/' + ${servidor.idServidor} + '\''">
+            ← Voltar
+        </button>
+        <div class="user-info-simple" style="text-align: right;">
+            <div class="user-name" th:text="${servidor.nome}">Nome Servidor</div>
+            <div class="user-matricula">Nova Solicitação</div>
+        </div>
+    </div>
+
+    <div class="title-row">
+        <h2 class="page-title">Agendar Férias</h2>
+    </div>
+
+    <div class="form-section">
+        <form id="formFerias" onsubmit="enviarSolicitacao(event)">
+            <input type="hidden" id="servidorId" th:value="${servidor.idServidor}">
+
+            <div class="form-row">
+                <label class="form-label-dark">Data de Início</label>
+                <input type="date" id="dataInicio" class="form-input-dark" required onchange="calcularDias()">
+            </div>
+
+            <div class="form-row">
+                <label class="form-label-dark">Data de Fim</label>
+                <input type="date" id="dataFim" class="form-input-dark" required onchange="calcularDias()">
+                <div id="resumoDias" class="calc-dias"></div>
+            </div>
+
+            <button type="submit" class="btn-confirmar">CONFIRMAR SOLICITAÇÃO</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Script para Calcular a quantidade de dias visualmente
+    function calcularDias() {
+        const inicio = document.getElementById('dataInicio').value;
+        const fim = document.getElementById('dataFim').value;
+        const divResumo = document.getElementById('resumoDias');
+
+        if (inicio && fim) {
+            const date1 = new Date(inicio);
+            const date2 = new Date(fim);
+
+            // Diferença em milissegundos
+            const diffTime = Math.abs(date2 - date1);
+            // Converter para dias (+1 para incluir o dia final)
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+            if (diffDays > 0) {
+                divResumo.textContent = `Total: ${diffDays} dias`;
+                divResumo.style.color = "#ffffff";
+            } else {
+                divResumo.textContent = "A data final deve ser maior que a inicial";
+                divResumo.style.color = "#ff6b6b";
+            }
+        }
+    }
+
+    // 2. Script para Enviar o JSON para a API
+    async function enviarSolicitacao(event) {
+        event.preventDefault(); // Impede o reload da página padrão
+
+        const servidorId = document.getElementById('servidorId').value;
+        const dataInicio = document.getElementById('dataInicio').value;
+        const dataFim = document.getElementById('dataFim').value;
+
+        // Monta o JSON igual ao que você testou
+        const payload = {
+            servidorId: parseInt(servidorId),
+            dataInicio: dataInicio,
+            dataFim: dataFim
+            // O backend calcula o nome, status, etc.
+        };
+
+        try {
+            const response = await fetch('/api/ferias', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('Férias solicitadas com sucesso!');
+                // Redireciona de volta para a lista
+                window.location.href = `/ferias/${servidorId}`;
+            } else {
+                const errorText = await response.text();
+                alert('Erro ao solicitar: ' + errorText);
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro de conexão com o servidor.');
+        }
+    }
+</script>
+
+</body>
+</html>

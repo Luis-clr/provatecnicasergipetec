@@ -79,4 +79,15 @@ public class WebController {
             return "redirect:/ferias/" + servidorId;
         }
     }
+    @GetMapping("/ferias/nova")
+    public String formNovaSolicitacao(@RequestParam Integer servidorId, Model model) {
+        try {
+            Servidor servidor = servidorService.buscarPorId(servidorId);
+            model.addAttribute("servidor", servidor);
+            return "nova-solicitacao";
+        } catch (Exception e) {
+            return "redirect:/"; // Se der erro, volta pro login
+        }
+    }
+
 }

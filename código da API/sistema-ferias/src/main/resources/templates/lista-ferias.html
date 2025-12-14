@@ -8,7 +8,6 @@
 </head>
 <body class="dark-body">
 <div class="screen-container">
-    <!-- Header -->
     <div class="screen-header">
         <div class="user-info-simple">
             <div class="user-name" th:text="${servidor.nome}">Nome Funcionário</div>
@@ -17,15 +16,14 @@
         <button class="btn-sair" onclick="location.href='/'">sair</button>
     </div>
 
-    <!-- Título e Botão Nova Solicitação -->
     <div class="title-row">
         <h2 class="page-title">Meus Períodos de Férias</h2>
-        <button class="btn-nova-solicitacao" onclick="alert('Funcionalidade em desenvolvimento')">
+        <button class="btn-nova-solicitacao"
+                th:onclick="'location.href=\'/ferias/nova?servidorId=' + ${servidor.idServidor} + '\''">
             Nova solicitacao
         </button>
     </div>
 
-    <!-- Lista de Férias -->
     <div class="ferias-list">
         <div th:if="${#lists.isEmpty(ferias)}" class="empty-state-simple">
             <p>Nenhum período de férias encontrado</p>
@@ -37,15 +35,15 @@
                 <div class="card-header-simple">
                     <div class="card-left">
                         <div class="card-title-simple">
-                            Férias <span th:text="${#dates.year(f.dataInicio)}"></span>
+                            Férias <span th:text="${#temporals.year(f.dataInicio)}"></span>
                         </div>
                         <div class="card-date">
-                            <span th:text="${#dates.format(f.dataInicio, 'dd/MM/yyyy')}"></span> a
-                            <span th:text="${#dates.format(f.dataFim, 'dd/MM/yyyy')}"></span>
+                            <span th:text="${#temporals.format(f.dataInicio, 'dd/MM/yyyy')}"></span> a
+                            <span th:text="${#temporals.format(f.dataFim, 'dd/MM/yyyy')}"></span>
                             (<span th:text="${f.quantidadeDias}"></span> Dias)
                         </div>
                         <div class="card-payment">
-                            Pagamento : R$ <span th:text="${#numbers.formatDecimal(f.valorPagamento, 1, 2)}"></span>
+                            Pagamento : R$ <span th:text="${#numbers.formatDecimal(f.valorPagamento, 1, 2, 'COMMA')}"></span>
                         </div>
                     </div>
                     <div class="card-right">

@@ -1,0 +1,493 @@
+/* ==========================================
+   RESET E BASE
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+}
+
+/* ==========================================
+   TELA DE LOGIN (FUNDO BRANCO)
+   ========================================== */
+.login-body {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.login-card-simple {
+    background: #ffffff;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-sergipetec {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Se não tiver imagem, use isto: */
+.logo-sergipetec::after {
+    content: 'SERGIPETEC';
+    display: block;
+    background: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.login-form-simple {
+    width: 100%;
+}
+
+.form-group-simple {
+    margin-bottom: 25px;
+}
+
+.form-label-simple {
+    display: block;
+    color: #000000;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-input-simple {
+    width: 100%;
+    padding: 15px;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #000000;
+    background: #ffffff;
+    font-family: 'Courier New', monospace;
+}
+
+.form-input-simple:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.btn-entra-simple {
+    width: 100%;
+    padding: 16px;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    margin-top: 10px;
+}
+
+.btn-entra-simple:hover {
+    background: #333;
+}
+
+.error-message {
+    background: #ffebee;
+    border: 2px solid #f44336;
+    color: #c62828;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ==========================================
+   TELAS ESCURAS (LISTA E DETALHES)
+   ========================================== */
+.dark-body {
+    background: #1a1a1a;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.screen-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #2a2a2a;
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    min-height: 600px;
+}
+
+/* ==========================================
+   HEADER DA LISTA
+   ========================================== */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ffffff;
+}
+
+.user-info-simple {
+    color: #ffffff;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.user-matricula {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.btn-sair {
+    padding: 10px 25px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.btn-sair:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* ==========================================
+   TÍTULO E NOVA SOLICITAÇÃO
+   ========================================== */
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.btn-nova-solicitacao {
+    padding: 10px 20px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.btn-nova-solicitacao:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* ==========================================
+   CARDS DE FÉRIAS (LISTA)
+   ========================================== */
+.ferias-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ferias-card-simple {
+    background: #2a2a2a;
+    border: 3px solid #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s;
+}
+
+.ferias-card-simple:hover {
+    background: #333;
+    transform: translateX(5px);
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-left {
+    flex: 1;
+}
+
+.card-title-simple {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.card-date {
+    font-size: 14px;
+    color: #cccccc;
+    margin-bottom: 8px;
+}
+
+.card-payment {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.card-right {
+    flex-shrink: 0;
+}
+
+.status-badge-simple {
+    padding: 8px 20px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ==========================================
+   DETALHES DAS FÉRIAS
+   ========================================== */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ffffff;
+}
+
+.btn-voltar, .btn-sair-detail {
+    padding: 10px 25px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.btn-voltar:hover, .btn-sair-detail:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.detail-title-section {
+    text-align: center;
+    flex: 1;
+}
+
+.detail-title {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.status-badge-detail {
+    display: inline-block;
+    padding: 8px 25px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ==========================================
+   SEÇÕES DE INFORMAÇÃO
+   ========================================== */
+.info-section {
+    background: #2a2a2a;
+    border: 3px solid #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.section-title-simple {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.section-content {
+    color: #ffffff;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #444;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.info-value {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* ==========================================
+   TIMELINE (HISTÓRICO)
+   ========================================== */
+.timeline-simple {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline-item-simple {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item-simple:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 3px solid #2a2a2a;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.timeline-line {
+    position: absolute;
+    left: -21px;
+    top: 25px;
+    width: 2px;
+    height: calc(100% + 10px);
+    background: #ffffff;
+    z-index: 1;
+}
+
+.timeline-content-simple {
+    background: #1a1a1a;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.timeline-date-simple {
+    font-size: 12px;
+    color: #cccccc;
+    margin-bottom: 8px;
+}
+
+.timeline-status-simple {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* ==========================================
+   EMPTY STATE
+   ========================================== */
+.empty-state-simple {
+    text-align: center;
+    padding: 60px 20px;
+    color: #cccccc;
+    font-size: 18px;
+}
+
+/* ==========================================
+   RESPONSIVO
+   ========================================== */
+@media (max-width: 768px) {
+    .screen-container {
+        padding: 20px;
+    }
+
+    .title-row {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .card-header-simple {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .detail-header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .detail-title-section {
+        width: 100%;
+        order: -1;
+    }
+
+    .info-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .info-value {
+        text-align: left;
+    }
+}

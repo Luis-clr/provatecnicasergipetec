@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Férias</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="login-body">
+<div class="login-container">
+    <div class="login-card-simple">
+        <!-- Logo Sergipetec -->
+        <div class="logo-sergipetec">
+            <img th:src="@{/images/sergipetec-logo.png}" alt="Sergipetec" class="logo-img">
+        </div>
+
+        <!-- Mensagem de Erro -->
+        <div th:if="${erro}" class="error-message" th:text="${erro}"></div>
+
+        <!-- Formulário -->
+        <form th:action="@{/login}" method="post" class="login-form-simple">
+            <div class="form-group-simple">
+                <label class="form-label-simple">Matrícula</label>
+                <input type="text"
+                       name="matricula"
+                       class="form-input-simple"
+                       placeholder=""
+                       required>
+            </div>
+
+            <div class="form-group-simple">
+                <label class="form-label-simple">Senha</label>
+                <input type="password"
+                       name="senha"
+                       class="form-input-simple"
+                       placeholder=""
+                       required>
+            </div>
+
+            <button type="submit" class="btn-entra-simple">Entra</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

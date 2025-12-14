@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Períodos de Férias</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="dark-body">
+<div class="screen-container">
+    <!-- Header -->
+    <div class="screen-header">
+        <div class="user-info-simple">
+            <div class="user-name" th:text="${servidor.nome}">Nome Funcionário</div>
+            <div class="user-matricula">matrícula: <span th:text="${servidor.matricula}"></span></div>
+        </div>
+        <button class="btn-sair" onclick="location.href='/'">sair</button>
+    </div>
+
+    <!-- Título e Botão Nova Solicitação -->
+    <div class="title-row">
+        <h2 class="page-title">Meus Períodos de Férias</h2>
+        <button class="btn-nova-solicitacao" onclick="alert('Funcionalidade em desenvolvimento')">
+            Nova solicitacao
+        </button>
+    </div>
+
+    <!-- Lista de Férias -->
+    <div class="ferias-list">
+        <div th:if="${#lists.isEmpty(ferias)}" class="empty-state-simple">
+            <p>Nenhum período de férias encontrado</p>
+        </div>
+
+        <div th:each="f : ${ferias}" class="ferias-card-simple">
+            <a th:href="@{/ferias/detalhes/{id}(id=${f.id}, servidorId=${servidor.idServidor})}"
+               class="card-link">
+                <div class="card-header-simple">
+                    <div class="card-left">
+                        <div class="card-title-simple">
+                            Férias <span th:text="${#dates.year(f.dataInicio)}"></span>
+                        </div>
+                        <div class="card-date">
+                            <span th:text="${#dates.format(f.dataInicio, 'dd/MM/yyyy')}"></span> a
+                            <span th:text="${#dates.format(f.dataFim, 'dd/MM/yyyy')}"></span>
+                            (<span th:text="${f.quantidadeDias}"></span> Dias)
+                        </div>
+                        <div class="card-payment">
+                            Pagamento : R$ <span th:text="${#numbers.formatDecimal(f.valorPagamento, 1, 2)}"></span>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="status-badge-simple" th:text="${f.statusAtual}"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

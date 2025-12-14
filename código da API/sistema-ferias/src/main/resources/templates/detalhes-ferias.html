@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes das Férias</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="dark-body">
+<div class="screen-container">
+    <!-- Header com Botões -->
+    <div class="detail-header">
+        <button class="btn-voltar" th:onclick="'location.href=\'/ferias/' + ${servidor.idServidor} + '\''">
+            Voltar
+        </button>
+        <div class="detail-title-section">
+            <h2 class="detail-title">Detalhes das Férias</h2>
+            <div class="status-badge-detail" th:text="${detalhes.statusAtual}"></div>
+        </div>
+        <button class="btn-sair-detail" onclick="location.href='/'">Sair</button>
+    </div>
+
+    <!-- Informações do Período -->
+    <div class="info-section">
+        <div class="section-title-simple">Informações do Período</div>
+        <div class="section-content">
+            <div class="info-row">
+                <span class="info-label">Data Início:</span>
+                <span class="info-value" th:text="${detalhes.periodo.dataInicio}"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Data Fim:</span>
+                <span class="info-value" th:text="${detalhes.periodo.dataFim}"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Quantidade de Dias:</span>
+                <span class="info-value"><span th:text="${detalhes.periodo.quantidadeDias}"></span> dias</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Solicitado em:</span>
+                <span class="info-value" th:text="${detalhes.periodo.Data_criacao}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informações de Pagamento -->
+    <div th:if="${detalhes.pagamento != null}" class="info-section">
+        <div class="section-title-simple">Informações de Pagamento</div>
+        <div class="section-content">
+            <div class="info-row">
+                <span class="info-label">Data do Pagamento:</span>
+                <span class="info-value" th:text="${detalhes.pagamento.dataPagamento ?: 'Não informado'}"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Valor Bruto:</span>
+                <span class="info-value" th:text="${#numbers.formatDecimal(detalhes.pagamento.valorBruto, 1, 2)}"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Valor Líquido:</span>
+                <span class="info-value" th:text="${#numbers.formatDecimal(detalhes.pagamento.valorLiquido, 1, 2)}"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status:</span>
+                <span class="info-value" th:text="${detalhes.pagamento.status}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Histórico de Status -->
+    <div th:if="${detalhes.historicoStatus != null and !#lists.isEmpty(detalhes.historicoStatus)}"
+         class="info-section">
+        <div class="section-title-simple">Histórico de Status</div>
+        <div class="timeline-simple">
+            <div th:each="h, iterStat : ${detalhes.historicoStatus}" class="timeline-item-simple">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-simple">
+                    <div class="timeline-date-simple" th:text="${h.data}"></div>
+                    <div class="timeline-status-simple" th:text="${h.status}"></div>
+                </div>
+                <div th:if="${!iterStat.last}" class="timeline-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

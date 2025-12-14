@@ -35,3 +35,26 @@ A aplicação está totalmente containerizada. Para rodar, você precisa apenas 
    docker-compose up --build
    API disponível em: http://localhost:8080
    Banco disponível em: localhost:5432
+
+📡 Endpoints Disponíveis
+
+Consultar férias por ID
+GET http://localhost:8080/api/ferias/1
+
+👤 Consultar férias de um servidor
+GET http://localhost:8080/api/servidores/1/ferias
+
+📝 Solicitar novas férias
+POST http://localhost:8080/api/ferias
+
+Body (JSON):
+{
+"servidorId": 1,
+"dataInicio": "2026-01-10",
+"dataFim": "2026-01-29"
+}
+Resposta de sucesso (exemplo)
+{
+"id": 5,
+"message": "Solicitação de férias criada com sucesso"
+}

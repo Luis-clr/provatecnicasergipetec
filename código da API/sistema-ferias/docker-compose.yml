@@ -11,7 +11,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      # Executa o init.sql ao iniciar o banco pela primeira vez
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # Serviço da API Java
@@ -23,8 +22,6 @@ services:
     depends_on:
       - db
     environment:
-      # Conecta no container 'db'
-      # stringtype=unspecified é OBRIGATÓRIO para seu Enum funcionar
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/sergipetec?stringtype=unspecified
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 123
